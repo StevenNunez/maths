@@ -1,47 +1,60 @@
+defmodule PartialOperation, do: defstruct [:operator, :number]
+defmodule Maths.NumberGenerator do
+  defmacro __using__(number_map) do
+    for {func_name, value} <- number_map do
+      quote do
+        def unquote(func_name)(), do: unquote(value)
+        def unquote(func_name)(%PartialOperation{} = po) do
+          do_calculation(unquote(value), po)
+        end
+      end
+    end
+  end
+end
 defmodule Maths do
-  defmodule PartialOperation, do: defstruct [:operator, :number]
+  use Maths.NumberGenerator, [
+    one: 1,
+    two: 2,
+    three: 3,
+    four: 4,
+    five: 5,
+    six: 6,
+    seven: 7,
+    eight: 8,
+    nine: 9
+  ]
 
-  def one, do: 1
-  def one(%PartialOperation{} = po) do
-    do_calculation(1, po)
-  end
-  def two, do: 2
-  def two(%PartialOperation{} = po) do
-    do_calculation(2, po)
-  end
-  def three, do: 3
-  def three(%PartialOperation{} = po) do
-    do_calculation(3, po)
-  end
-
-  def four, do: 4
-  def four(%PartialOperation{} = po) do
-    do_calculation(4, po)
-  end
-
-  def five, do: 5
-  def five(%PartialOperation{} = po) do
-    do_calculation(5, po)
+  def divided_by(number) do
+    %PartialOperation{
+      operator: :divided_by,
+      number: number
+    }
   end
 
-  def six, do: 6
-  def six(%PartialOperation{} = po) do
-    do_calculation(6, po)
+  def divided_by(n1, n2) do
+    n2 / n1
   end
 
-  def seven, do: 7
-  def seven(%PartialOperation{} = po) do
-    do_calculation(7, po)
+  def times(number) do
+    %PartialOperation{
+      operator: :times,
+      number: number
+    }
   end
 
-  def eight, do: 8
-  def eight(%PartialOperation{} = po) do
-    do_calculation(8, po)
+  def times(n1, n2) do
+    n1 * n2
   end
 
-  def nine, do: 9
-  def nine(%PartialOperation{} = po) do
-    do_calculation(9, po)
+  def minus(number) do
+    %PartialOperation{
+      operator: :minus,
+      number: number
+    }
+  end
+
+  def minus(n1, n2) do
+    n2 - n1
   end
 
   def plus(number) do
