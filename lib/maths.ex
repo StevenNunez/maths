@@ -1,11 +1,10 @@
-defmodule PartialOperation, do: defstruct [:operator, :number]
 defmodule Maths.NumberGenerator do
   defmacro __using__(number_map) do
     for {func_name, value} <- number_map do
       quote do
         def unquote(func_name)(), do: unquote(value)
-        def unquote(func_name)(%PartialOperation{} = po) do
-          do_calculation(unquote(value), po)
+        def unquote(func_name)(po) do
+          po.(unquote(value))
         end
       end
     end
@@ -25,50 +24,18 @@ defmodule Maths do
   ]
 
   def divided_by(number) do
-    %PartialOperation{
-      operator: :divided_by,
-      number: number
-    }
-  end
-
-  def divided_by(n1, n2) do
-    n2 / n1
+    fn n -> n / number end
   end
 
   def times(number) do
-    %PartialOperation{
-      operator: :times,
-      number: number
-    }
-  end
-
-  def times(n1, n2) do
-    n1 * n2
+    fn n -> n * number end
   end
 
   def minus(number) do
-    %PartialOperation{
-      operator: :minus,
-      number: number
-    }
-  end
-
-  def minus(n1, n2) do
-    n2 - n1
+    fn n -> n - number end
   end
 
   def plus(number) do
-    %PartialOperation{
-      operator: :plus,
-      number: number
-    }
-  end
-
-  def plus(n1, n2) do
-    n1 + n2
-  end
-
-  defp do_calculation(number, %PartialOperation{operator: op, number: n}) do
-    apply(__MODULE__, op, [n, number])
+    fn n -> number + n end
   end
 end

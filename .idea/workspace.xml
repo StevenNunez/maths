@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b79d813f-0e0d-4475-967c-27ec8f967305" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/maths.ex" beforeDir="false" afterPath="$PROJECT_DIR$/lib/maths.ex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/maths_test.exs" beforeDir="false" afterPath="$PROJECT_DIR$/test/maths_test.exs" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -53,7 +51,8 @@
       <option name="presentableId" value="Default" />
       <updated>1570630756841</updated>
       <workItem from="1570630763163" duration="1206000" />
-      <workItem from="1570635109813" duration="2393000" />
+      <workItem from="1570635109813" duration="3895000" />
+      <workItem from="1570639197251" duration="13000" />
     </task>
     <servers />
   </component>
@@ -65,7 +64,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
